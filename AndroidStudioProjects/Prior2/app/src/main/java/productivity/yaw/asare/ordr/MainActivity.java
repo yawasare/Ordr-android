@@ -1,5 +1,6 @@
 package productivity.yaw.asare.ordr;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.net.Uri;
@@ -33,8 +34,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                DialogFragment newFragment = new CreateTaskFragment();
+                newFragment.show(getFragmentManager(), "missiles");
             }
         });
 
