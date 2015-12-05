@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 DialogFragment newFragment = new CreateTaskFragment();
-                newFragment.show(getFragmentManager(), "missiles");
+                newFragment.show(getFragmentManager(), "create priority");
+
             }
         });
 
