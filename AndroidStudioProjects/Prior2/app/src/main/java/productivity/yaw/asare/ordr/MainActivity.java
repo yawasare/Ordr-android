@@ -1,5 +1,6 @@
 package productivity.yaw.asare.ordr;
 
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -17,12 +18,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                    PriorityFragment.OnFragmentInteractionListener,
                    SettingsFragment.OnFragmentInteractionListener,
-                   ArchiveFragment.OnFragmentInteractionListener{
+                   ArchiveFragment.OnFragmentInteractionListener,
+                    CreateTaskFragment.CreateTaskListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,5 +127,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onConfirm(CreateTaskFragment dialog) {
+        Toast.makeText(getBaseContext(), dialog.getPriority().toString(), Toast.LENGTH_LONG).show();
     }
 }
