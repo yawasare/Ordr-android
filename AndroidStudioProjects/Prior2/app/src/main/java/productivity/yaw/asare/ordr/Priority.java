@@ -9,6 +9,7 @@ public class Priority {
     private int mDeadline = 0;
     private int mDuration = 0;
     private int mImportance =0;
+    private int mID = 0;
 
     public Priority(){
 
@@ -37,6 +38,9 @@ public class Priority {
         return mImportance;
     }
 
+    public int getID(){
+        return mID;
+    }
 
     public void setTaskName(String name) {
         this.mTaskname = name;
@@ -54,6 +58,9 @@ public class Priority {
         this.mImportance = importance;
     }
 
+    public void setID(int id){
+        this.mID=id;
+    }
     @Override
     public String toString(){
         return "Priority: " + mTaskname + "\n Deadline: " + mDeadline + " \n Duration: "+
