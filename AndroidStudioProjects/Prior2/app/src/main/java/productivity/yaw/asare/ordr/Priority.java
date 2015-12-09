@@ -1,15 +1,21 @@
 package productivity.yaw.asare.ordr;
 
+import java.util.Calendar;
+
 /**
  * Created by yaw on 12/6/15.
  */
 public class Priority {
 
     private String mTaskname = "";
+    private Calendar mCreated;
+    private Calendar mDeadlineDate;
     private int mDeadline = 0;
     private int mDuration = 0;
     private int mImportance =0;
     private int mID = 0;
+    private int Completed = 0;
+    private String CompletedAt = " 0";
 
     public Priority(){
 
@@ -42,6 +48,10 @@ public class Priority {
         return mID;
     }
 
+    public Calendar getCreated(){
+        return mCreated;
+    }
+
     public void setTaskName(String name) {
         this.mTaskname = name;
     }
@@ -58,12 +68,36 @@ public class Priority {
         this.mImportance = importance;
     }
 
+    public void setCreated (Calendar c){
+        this.mCreated = c;
+    }
+
     public void setID(int id){
         this.mID=id;
     }
-    @Override
-    public String toString(){
-        return "Priority: " + mTaskname + "\n Deadline: " + mDeadline + " \n Duration: "+
-                mDuration + "\n Importance: " + mImportance;
+
+
+    public int getCompleted() {
+        return Completed;
+    }
+
+    public void setCompleted(int completed) {
+        Completed = completed;
+    }
+
+    public String getCompletedAt() {
+        return CompletedAt;
+    }
+
+    public void setCompletedAt(String completedAt) {
+        CompletedAt = completedAt;
+    }
+
+    public Calendar getDeadlineDate() {
+        return mDeadlineDate;
+    }
+
+    public void setDeadlineDate(Calendar deadlineDate) {
+        mDeadlineDate = deadlineDate;
     }
 }
