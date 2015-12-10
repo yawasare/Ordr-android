@@ -1,12 +1,15 @@
 package productivity.yaw.asare.ordr;
 
 import android.app.Activity;
+import android.app.ListFragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 
 /**
@@ -17,7 +20,7 @@ import android.view.ViewGroup;
  * Use the {@link PriorityFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PriorityFragment extends Fragment {
+public class PriorityFragment extends ListFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,6 +61,8 @@ public class PriorityFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
@@ -85,6 +90,7 @@ public class PriorityFragment extends Fragment {
         }
     }
 
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -105,5 +111,11 @@ public class PriorityFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+
+    public ArrayList<Priority> getPriorities(){
+        DBHelper helper = new DBHelper(getActivity());
+        return helper.getCurrentPriorities();
+    }
+
 
 }

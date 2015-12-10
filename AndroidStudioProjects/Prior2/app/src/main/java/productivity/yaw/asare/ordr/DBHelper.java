@@ -42,14 +42,14 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE IF NOT EXIST " + PriorityEntry.TABLE_NAME + " (" + PriorityEntry._ID +
+            "CREATE TABLE IF NOT EXISTS " + PriorityEntry.TABLE_NAME + " (" + PriorityEntry._ID +
             " INTEGER PRIMARY KEY," + PriorityEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
             PriorityEntry.COLUMN_NAME_CREATED_AT + TEXT_TYPE + COMMA_SEP +
             PriorityEntry.COLUMN_NAME_DEADLINE + TEXT_TYPE + COMMA_SEP +
             PriorityEntry.COLUMN_NAME_IMPORTANCE + INTEGER_TYPE + COMMA_SEP +
             PriorityEntry.COLUMN_NAME_DURATION + INTEGER_TYPE + COMMA_SEP +
             PriorityEntry.COLUMN_NAME_COMPLETED + INTEGER_TYPE + COMMA_SEP +
-            PriorityEntry.COLUMN_NAME_COMPLETED_AT + TEXT_TYPE + COMMA_SEP;
+            PriorityEntry.COLUMN_NAME_COMPLETED_AT + TEXT_TYPE + " );";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + PriorityEntry.TABLE_NAME;
@@ -72,13 +72,13 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(PriorityEntry.COLUMN_NAME_TITLE, priority.getTaskname());
         contentValues.put(PriorityEntry.COLUMN_NAME_IMPORTANCE, priority.getImportance());
         contentValues.put(PriorityEntry.COLUMN_NAME_COMPLETED, 0);
-        contentValues.put(PriorityEntry.COLUMN_NAME_COMPLETED_AT, " ");
+        contentValues.put(PriorityEntry.COLUMN_NAME_COMPLETED_AT, "0");
         contentValues.put(PriorityEntry.COLUMN_NAME_DURATION, priority.getDuration());
 
         TimeZone tz = TimeZone.getTimeZone("UTC");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
         df.setTimeZone(tz);
-        String nowAsISO = df.format(Calendar.getInstance(tz));
+        String nowAsISO = df.format(new Date());
 
         contentValues.put(PriorityEntry.COLUMN_NAME_CREATED_AT, nowAsISO);
 
@@ -101,7 +101,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 Deadline.roll(Calendar.DATE, 365);
                 break;
         }
-        contentValues.put(PriorityEntry.COLUMN_NAME_DEADLINE, df.format(Deadline));
+        contentValues.put(PriorityEntry.COLUMN_NAME_DEADLINE, df.format(Deadline.getTime()));
 
         db.insert(PriorityEntry.TABLE_NAME, null, contentValues);
     }

@@ -131,6 +131,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onConfirm(CreateTaskFragment dialog) {
-        Toast.makeText(getBaseContext(), dialog.getPriority().toString(), Toast.LENGTH_LONG).show();
+        Priority p = dialog.getPriority();
+        DBHelper helper = new DBHelper(getBaseContext());
+        helper.addPriority(p);
     }
 }
