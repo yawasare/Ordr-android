@@ -8,8 +8,10 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -62,7 +64,8 @@ public class PriorityFragment extends ListFragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
+        PriorityAdapter adapter = new PriorityAdapter(getActivity(), getPriorities());
+        setListAdapter(adapter);
     }
 
     @Override
@@ -92,6 +95,23 @@ public class PriorityFragment extends ListFragment {
 
 
     @Override
+    public void onStart(){
+        super.onStart();
+
+        String toaststr = "";
+
+        ArrayList<Priority> priorities =  new DBHelper(getActivity()).getCurrentPriorities();
+        Iterator<Priority> iter  = priorities.iterator();
+
+        while(iter.hasNext()){
+            Priority p = iter.next();
+            toaststr += p.toString() + " \n";
+        }
+
+        Toast.makeText(getActivity(), toaststr, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -114,8 +134,8 @@ public class PriorityFragment extends ListFragment {
 
     public ArrayList<Priority> getPriorities(){
         DBHelper helper = new DBHelper(getActivity());
-        return helper.getCurrentPriorities();
-    }
 
+        return  helper.getCurrentPriorities();
+    }
 
 }

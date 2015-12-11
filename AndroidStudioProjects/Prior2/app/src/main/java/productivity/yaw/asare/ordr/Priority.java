@@ -26,6 +26,7 @@ public class Priority {
         setDeadline(deadline);
         setDuration(duration);
         setImportance(importance);
+        mDeadlineDate = Calendar.getInstance();
     }
 
     public String getTaskname(){
@@ -99,5 +100,10 @@ public class Priority {
 
     public void setDeadlineDate(Calendar deadlineDate) {
         mDeadlineDate = deadlineDate;
+    }
+
+    public String toString(){
+        return mTaskname + " by " + mDeadlineDate.toString();
+
     }
 }

@@ -203,6 +203,7 @@ public class DBHelper extends SQLiteOpenHelper {
             p.setDeadlineDate(dead);
 
             priorities.add(p);
+            cursor.moveToNext();
         }
 
         return priorities;

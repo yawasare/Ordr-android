@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class CreateTaskFragment extends DialogFragment implements OnSeekBarChang
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         view = inflater.inflate(R.layout.create_priority,null);
+
         SeekBar deadlineBar = (SeekBar)view.findViewById(R.id.deadline_bar);
         deadlineBar.setOnSeekBarChangeListener(this);
 
@@ -47,6 +49,7 @@ public class CreateTaskFragment extends DialogFragment implements OnSeekBarChang
         importanceBar.setOnSeekBarChangeListener(this);
 
         EditText ed = (EditText)view.findViewById(R.id.editText);
+        ed.setImeOptions(EditorInfo.IME_ACTION_DONE);
         ed.addTextChangedListener(new TextWatcher() {
 
             @Override

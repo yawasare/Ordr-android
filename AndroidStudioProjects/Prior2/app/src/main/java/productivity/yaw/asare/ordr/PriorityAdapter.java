@@ -5,19 +5,21 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by yaw on 12/10/15.
  */
 public class PriorityAdapter extends BaseAdapter {
 
-    Priority[] mPriorities;
+    ArrayList<Priority> mPriorities;
     Context mContext;
     private static LayoutInflater inflater=null;
 
-    public PriorityAdapter(Activity activity, Priority[] priorities){
+    public PriorityAdapter(Activity activity, ArrayList<Priority> priorities){
         mContext = activity;
         mPriorities = priorities;
         inflater = ( LayoutInflater )mContext.
@@ -26,14 +28,12 @@ public class PriorityAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mPriorities.length;
+        return mPriorities.size();
     }
 
     @Override
     public Object getItem(int position) {
-
-
-        return null;
+        return position;
     }
 
     @Override
@@ -43,6 +43,13 @@ public class PriorityAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        View vi=convertView;
+        if(convertView==null)
+            vi = inflater.inflate(R.layout.priority_list_item, null);
+
+        TextView title  = (TextView)vi.findViewById(R.id.priority_text);
+        title.setText(mPriorities.get(position).getTaskname());
+
+        return vi;
     }
 }

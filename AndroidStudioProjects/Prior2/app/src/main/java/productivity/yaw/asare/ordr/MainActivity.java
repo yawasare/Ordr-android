@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity
                    ArchiveFragment.OnFragmentInteractionListener,
                     CreateTaskFragment.CreateTaskListener{
 
+    Fragment fragment = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        try {
+            fragment = (Fragment)PriorityFragment.class.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -90,8 +103,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-
-        Fragment fragment = null;
 
         Class fragmentClass = null;
 
