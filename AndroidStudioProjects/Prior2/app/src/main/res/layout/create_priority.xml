@@ -36,7 +36,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText"
             android:hint="Priority Name"
-            android:paddingTop="60px"/>
+            android:paddingTop="60px"
+            android:imeOptions="actionDone"
+            android:singleLine="true" />
 
         </LinearLayout>
     <LinearLayout

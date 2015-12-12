@@ -108,7 +108,8 @@ public class PriorityFragment extends ListFragment {
             toaststr += p.toString() + " \n";
         }
 
-        Toast.makeText(getActivity(), toaststr, Toast.LENGTH_LONG).show();
+        PriorityAdapter adapter = new PriorityAdapter(getActivity(), getPriorities());
+        setListAdapter(adapter);
     }
 
     @Override

@@ -145,5 +145,15 @@ public class MainActivity extends AppCompatActivity
         Priority p = dialog.getPriority();
         DBHelper helper = new DBHelper(getBaseContext());
         helper.addPriority(p);
+
+
+        try {
+            fragment = (Fragment)PriorityFragment.class.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
     }
 }
