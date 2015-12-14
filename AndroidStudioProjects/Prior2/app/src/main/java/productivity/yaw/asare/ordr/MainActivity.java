@@ -23,7 +23,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                    PriorityFragment.OnFragmentInteractionListener,
-                   SettingsFragment.OnFragmentInteractionListener,
                    ArchiveFragment.OnFragmentInteractionListener,
                     CreateTaskFragment.CreateTaskListener{
 
@@ -111,13 +110,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_priorities) {
             fragmentClass = PriorityFragment.class;
 
-        } else if (id == R.id.nav_settings) {
-            fragmentClass = SettingsFragment.class;
-
         } else if (id == R.id.nav_archive) {
             fragmentClass = ArchiveFragment.class;
-
-        } else if (id == R.id.nav_about) {
 
         }
 

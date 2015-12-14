@@ -1,151 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:weightSum="1">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="New Priority"
-        android:id="@+id/textView2"
-        android:layout_gravity="center_horizontal"
-        android:padding="40px"
-        />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary"
-        android:paddingBottom="10px"
-        android:paddingTop="20px"
-        android:layout_gravity="center_horizontal"
-        />
-
+    android:layout_width="match_parent"
+    >
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="40px"
-        android:paddingRight="50px"
-        android:weightSum="1">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:hint="Priority Name"
-            android:paddingTop="60px"
-            android:imeOptions="actionDone"
-            android:singleLine="true" />
-
-        </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="50px"
         android:weightSum="1">
 
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="65px"
-            android:weightSum="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Deadline?"
-                android:textSize="35px"
-                android:id="@+id/textView4"
-                />
-            <!--  android:layout_gravity="center_horizontal" -->
-
-
-            <SeekBar
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:max="4"
-                android:id="@+id/deadline_bar"
-                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/deadline_hours"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="New Priority"
+                android:id="@+id/textView2"
                 android:layout_gravity="center_horizontal"
-                android:textSize="25px"
-                android:editable="true"
-                android:id="@+id/description1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="65px"
-            android:weightSum="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Importance?"
-                android:textSize="35px"
-                android:id="@+id/textView6" />
-
-            <SeekBar
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:max="2"
-                android:id="@+id/importance_bar"
+                android:padding="40px"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/importance_low"
-                android:layout_gravity="center_horizontal"
-                android:textSize="25px"
-                android:id="@+id/description2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Duration of work?"
-                android:textSize="35px"
-                android:id="@+id/textView7" />
-
-            <SeekBar
+            <View
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:max="4"
-                android:id="@+id/duration_bar"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:paddingBottom="10px"
+                android:paddingTop="20px"
+                android:layout_gravity="center_horizontal"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/duration_minutes"
-                android:layout_gravity="center_horizontal"
-                android:textSize="25px"
-                android:id="@+id/description3" />
+                android:paddingLeft="40px"
+                android:paddingRight="50px"
+                android:weightSum="1">
 
-        </LinearLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText"
+                    android:hint="Priority Name"
+                    android:paddingTop="60px"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true" />
+
+                </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="50px"
+                android:weightSum="1">
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="65px"
+                    android:weightSum="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Deadline?"
+                        android:textSize="35px"
+                        android:id="@+id/textView4"
+                        />
+                    <!--  android:layout_gravity="center_horizontal" -->
+
+
+                    <SeekBar
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:max="4"
+                        android:id="@+id/deadline_bar"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/deadline_hours"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="25px"
+                        android:editable="true"
+                        android:id="@+id/description1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="65px"
+                    android:weightSum="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Importance?"
+                        android:textSize="35px"
+                        android:id="@+id/textView6" />
+
+                    <SeekBar
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:max="2"
+                        android:id="@+id/importance_bar"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/importance_low"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="25px"
+                        android:id="@+id/description2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Duration of work?"
+                        android:textSize="35px"
+                        android:id="@+id/textView7" />
+
+                    <SeekBar
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:max="4"
+                        android:id="@+id/duration_bar"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/duration_minutes"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="25px"
+                        android:id="@+id/description3" />
+
+                </LinearLayout>
+            </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
