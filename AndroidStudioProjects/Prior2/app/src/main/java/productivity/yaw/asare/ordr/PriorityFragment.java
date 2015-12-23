@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 
@@ -136,7 +137,11 @@ public class PriorityFragment extends ListFragment {
     public ArrayList<Priority> getPriorities(){
         DBHelper helper = new DBHelper(getActivity());
 
-        return  helper.getCurrentPriorities();
+
+        ArrayList<Priority> prior = helper.getCurrentPriorities();
+        Collections.sort(prior);
+
+        return prior;
     }
 
 }

@@ -48,7 +48,7 @@ public class PriorityAdapter extends BaseAdapter {
             vi = inflater.inflate(R.layout.priority_list_item, null);
 
         TextView title  = (TextView)vi.findViewById(R.id.priority_text);
-        title.setText(mPriorities.get(position).getTaskname());
+        title.setText(mPriorities.get(position).getTaskname()+ " "+mPriorities.get(position).mPriority);
 
         return vi;
     }

@@ -5,7 +5,7 @@ import java.util.Calendar;
 /**
  * Created by yaw on 12/6/15.
  */
-public class Priority {
+public class Priority  implements Comparable<Priority>{
 
     private String mTaskname = "";
     private Calendar mCreated;
@@ -16,6 +16,8 @@ public class Priority {
     private int mID = 0;
     private int Completed = 0;
     private String CompletedAt = " 0";
+
+    public float mPriority = 0;
 
     public Priority(){
 
@@ -104,6 +106,50 @@ public class Priority {
 
     public String toString(){
         return mTaskname + " by " + mDeadlineDate.toString();
-
     }
+
+    public void calculatePriorityLevel(){
+        float total =  0;
+        total +=  (mImportance+1)*20;
+        total +=  (mDuration+1)*30;
+        Calendar now = Calendar.getInstance();
+
+        long difference = mDeadlineDate.getTime().getTime() - now.getTime().getTime();
+        int days = (int) (difference / (1000*60*60*24));
+        int hours = (int) ((difference - (1000*60*60*24*days)) / (1000*60*60));
+
+        if(mDeadline < 2){
+            if(hours < 8)
+                total += 100;
+        }
+        else{
+            if(days < 1)
+                total += 150;
+            else
+                if(days < 5)
+                    total += 50;
+
+        }
+
+        mPriority = (total/360)*10;
+    }
+
+    public int compareTo(Priority priority){
+        calculatePriorityLevel();
+        priority.calculatePriorityLevel();
+
+        if(mPriority == priority.mPriority)
+            return 0;
+        else if(mPriority > priority.mPriority) {
+            return 1;
+        }
+        return -1;
+    }
+
+    public int getPriorityLevel(){
+        calculatePriorityLevel();
+        return Math.round(mPriority);
+    }
+
+
 }
