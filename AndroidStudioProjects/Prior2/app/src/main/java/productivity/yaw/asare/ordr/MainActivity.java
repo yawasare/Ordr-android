@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -45,11 +46,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        GridView themeGrid = (GridView)drawer.findViewById(R.id.theme_grid);
+        int[] ids = {R.drawable.bluepurpletheme, R.drawable.greyblacktheme,
+                     R.drawable.orangebrowntheme, R.drawable.pinkbluetheme,
+                     R.drawable.whitegreytheme, R.drawable.yellowgreentheme};
+        themeGrid.setAdapter(new ThemeGridAdapter(this,ids));
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
