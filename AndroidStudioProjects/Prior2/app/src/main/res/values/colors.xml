@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#7ed40a</color>
-    <color name="colorPrimaryDark">#7ed40a</color>
-    <color name="colorAccent">#7ed40a</color>
-    <color name="priorityColor">#ffcccccc</color>
-    <color name="white">#FFFFFF</color>
-    <color name="trans">#00000000</color>
-    <color name="cleargreen">#887ed40a</color>
+
 </resources>

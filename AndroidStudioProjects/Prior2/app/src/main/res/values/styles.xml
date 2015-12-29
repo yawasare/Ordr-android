@@ -1,15 +1,73 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="greenyellow" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-    <style name="AppTheme.NoActionBar">
+        <item name="color_low">#63ef06</item>
+        <item name="color_high">#f7ff00</item>
+        <item name="color_background">#dddddd</item>
+        <item name="color_title">#ffffff</item>
+        <item name="color_list_foreground">#ffffff</item>
+        <item name="color_divider">#b4ef8d</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="bluepink" parent="Theme.AppCompat.Light.DarkActionBar" >
+        <item name="color_low">#0668fc</item>
+        <item name="color_high">#fb0279</item>
+        <item name="color_background">#dddddd</item>
+        <item name="color_title">#ffffff</item>
+        <item name="color_list_foreground">#ffffff</item>
+        <item name="color_divider">#87b9ff</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="darkgrey"  parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="color_low">#414141</item>
+        <item name="color_high">#878787</item>
+        <item name="color_background">#000000</item>
+        <item name="color_title">#ffffff</item>
+        <item name="color_list_foreground">#ffffff</item>
+        <item name="color_divider">#878787</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="lightgrey" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="color_low">#878787</item>
+        <item name="color_high">#eeeeee</item>
+        <item name="color_background">#ffffff</item>
+        <item name="color_title">#000000</item>
+        <item name="color_list_foreground">#ffffff</item>
+        <item name="color_divider">#878787</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="orangebrown" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="color_low">#878787</item>
+        <item name="color_high">#eeeeee</item>
+        <item name="color_background">#ffffff</item>
+        <item name="color_title">#000000</item>
+        <item name="color_list_foreground">#ffffff</item>
+        <item name="color_divider">#878787</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="bluepurple" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="color_low">#878787</item>
+        <item name="color_high">#eeeeee</item>
+        <item name="color_background">#ffffff</item>
+        <item name="color_title">#000000</item>
+        <item name="color_list_foreground">#ffffff</item>
+        <item name="color_divider">#878787</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
@@ -17,4 +75,5 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
+
 </resources>

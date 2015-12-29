@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     tools:context="productivity.yaw.asare.ordr.PriorityFragment"
     android:id = "@+id/priorfrag"
-    android:divider="@color/trans"
+    android:divider="?attr/color_divider"
     android:dividerHeight="15dp"
     >
 

@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final SharedPreferences preferences = getSharedPreferences("settings",MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        setTheme(preferences.getInt("theme", R.style.bluepink));
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -54,11 +60,45 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         GridView themeGrid = (GridView)drawer.findViewById(R.id.theme_grid);
-        int[] ids = {R.drawable.bluepurpletheme, R.drawable.greyblacktheme,
-                     R.drawable.orangebrowntheme, R.drawable.pinkbluetheme,
-                     R.drawable.whitegreytheme, R.drawable.yellowgreentheme};
+        final int[] ids = {R.drawable.pinkbluetheme,R.drawable.bluepurpletheme,
+                           R.drawable.greyblacktheme,R.drawable.orangebrowntheme,
+                           R.drawable.whitegreytheme, R.drawable.yellowgreentheme};
         themeGrid.setAdapter(new ThemeGridAdapter(this,ids));
-
+        themeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                switch(position){
+                    case 0:
+                        getApplicationContext().setTheme(R.style.bluepink);
+                        editor.putInt("theme", R.style.bluepink);
+                        break;
+                    case 1:
+                        getApplicationContext().setTheme(R.style.bluepurple);
+                        editor.putInt("theme", R.style.bluepurple);
+                        break;
+                    case 2:
+                        getApplicationContext().setTheme(R.style.darkgrey);
+                        editor.putInt("theme", R.style.darkgrey);
+                        break;
+                    case 3:
+                        getApplicationContext().setTheme(R.style.orangebrown);
+                        editor.putInt("theme", R.style.orangebrown);
+                        break;
+                    case 4:
+                        getApplicationContext().setTheme(R.style.lightgrey);
+                        editor.putInt("theme", R.style.lightgrey);
+                        break;
+                    case 5:
+                        getApplicationContext().setTheme(R.style.greenyellow);
+                        editor.putInt("theme", R.style.greenyellow);
+                        break;
+                }
+                editor.apply();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
