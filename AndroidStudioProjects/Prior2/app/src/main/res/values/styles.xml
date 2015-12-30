@@ -7,7 +7,7 @@
         <item name="color_background">#dddddd</item>
         <item name="color_title">#ffffff</item>
         <item name="color_list_foreground">#ffffff</item>
-        <item name="color_divider">#b4ef8d</item>
+        <item name="color_divider">#ffeeeeee</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

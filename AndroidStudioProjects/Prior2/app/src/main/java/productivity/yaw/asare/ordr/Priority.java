@@ -141,9 +141,9 @@ public class Priority  implements Comparable<Priority>{
         if(mPriority == priority.mPriority)
             return 0;
         else if(mPriority > priority.mPriority) {
-            return 1;
+            return -1;
         }
-        return -1;
+        return 1;
     }
 
     public int getPriorityLevel(){

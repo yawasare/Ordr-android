@@ -4,7 +4,7 @@
     tools:context="productivity.yaw.asare.ordr.PriorityFragment"
     android:id = "@+id/priorfrag"
     android:divider="?attr/color_divider"
-    android:dividerHeight="15dp"
+    android:dividerHeight="10dp"
     >
 
 

@@ -230,7 +230,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query( PriorityEntry.TABLE_NAME,  // The table to query
+        Cursor cursor = db.query(PriorityEntry.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
                 selection,                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
@@ -239,8 +239,21 @@ public class DBHelper extends SQLiteOpenHelper {
                 sortOrder                                 // The sort order
         );
 
+        cursor.moveToFirst();
+        ArrayList<Priority> priorities = new ArrayList<Priority>();
 
-        return null;
+        while(!cursor.isAfterLast()){
+            Priority p = new Priority();
+            p.setID(cursor.getInt(cursor.getColumnIndex(PriorityEntry._ID)));
+            p.setTaskName(cursor.getString(cursor.getColumnIndex(PriorityEntry.COLUMN_NAME_TITLE)));
+            p.setDuration(cursor.getInt(cursor.getColumnIndex(PriorityEntry.COLUMN_NAME_DURATION)));
+            p.setImportance(cursor.getInt(cursor.getColumnIndex(PriorityEntry.COLUMN_NAME_IMPORTANCE)));
+
+            priorities.add(p);
+            cursor.moveToNext();
+        }
+
+        return priorities;
     }
 
     public void deletePriority(Priority priority){
