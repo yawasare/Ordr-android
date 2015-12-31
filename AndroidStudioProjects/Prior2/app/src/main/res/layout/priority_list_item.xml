@@ -10,7 +10,7 @@
         android:layout_height="50dp"
         android:text="On Time"
         android:padding="10px"
-        android:textColor="?attr/color_title"/>
+        />
 
     <TextView
         android:id="@+id/priority_text"
@@ -38,15 +38,9 @@
 
             />
 
-
-        <ImageView
-            android:id="@+id/add_time_button"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/clock"
-            android:scaleType="fitXY"
-            android:padding="12dp"
-            />
+        <View
+            android:layout_width="100dp"
+            android:layout_height="match_parent" />
 
         <ImageView
             android:id="@+id/complete_button"

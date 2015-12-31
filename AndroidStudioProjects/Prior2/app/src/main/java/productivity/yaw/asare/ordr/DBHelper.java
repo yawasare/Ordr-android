@@ -119,7 +119,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(PriorityEntry.COLUMN_NAME_COMPLETED, priority.getCompleted());
         contentValues.put(PriorityEntry.COLUMN_NAME_COMPLETED_AT, priority.getCompletedAt());
         contentValues.put(PriorityEntry.COLUMN_NAME_DURATION, priority.getDuration());
-        contentValues.put(PriorityEntry.COLUMN_NAME_CREATED_AT, df.format(priority.getCreated()));
+        contentValues.put(PriorityEntry.COLUMN_NAME_CREATED_AT, df.format(priority.getCreated().getTime()));
 
         Calendar Deadline = priority.getCreated();
 
@@ -140,7 +140,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 Deadline.roll(Calendar.DATE, 365);
                 break;
         }
-        contentValues.put(PriorityEntry.COLUMN_NAME_DEADLINE, df.format(Deadline));
+        contentValues.put(PriorityEntry.COLUMN_NAME_DEADLINE, df.format(Deadline.getTime()));
 
         db.update(PriorityEntry.TABLE_NAME, contentValues, PriorityEntry._ID + " = ? ", new String[]{"" + priority.getID()});
     }
@@ -258,8 +258,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void deletePriority(Priority priority){
         SQLiteDatabase db = this.getWritableDatabase();
-         db.delete("contacts",
+         db.delete(PriorityEntry.TABLE_NAME,
                  PriorityEntry._ID + " = ? ",
                 new String[] { "" + priority.getID() });
+    }
+
+    public void addTimePriority(Priority priority){
+
+    }
+
+    public void completePriority(Priority priority){
+
     }
 }

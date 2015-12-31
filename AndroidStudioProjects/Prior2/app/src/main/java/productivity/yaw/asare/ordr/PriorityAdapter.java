@@ -2,18 +2,23 @@ package productivity.yaw.asare.ordr;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by yaw on 12/10/15.
  */
-public class PriorityAdapter extends BaseAdapter {
+public class PriorityAdapter extends BaseAdapter implements View.OnClickListener {
 
     ArrayList<Priority> mPriorities;
     Context mContext;
@@ -47,9 +52,43 @@ public class PriorityAdapter extends BaseAdapter {
         if(convertView==null)
             vi = inflater.inflate(R.layout.priority_list_item, null);
 
+        TextView status = (TextView)vi.findViewById(R.id.status_text);
+        status.setText(Constant.PRIORITY_LEVEL_STRINGS[mPriorities.get(position).getPriorityLevel()-1]);
+
         TextView title  = (TextView)vi.findViewById(R.id.priority_text);
-        title.setText(mPriorities.get(position).getTaskname()+ " "+mPriorities.get(position).mPriority);
+        title.setText(mPriorities.get(position).getTaskname() + "  " + mPriorities.get(position).getPriorityLevel());
+
+        ImageView complete = (ImageView)vi.findViewById(R.id.complete_button);
+        complete.setOnClickListener(this);
+        complete.setTag(mPriorities.get(position));
+
+
+        ImageView delete = (ImageView)vi.findViewById(R.id.cancel_button);
+        delete.setOnClickListener(this);
+        delete.setTag(mPriorities.get(position));
 
         return vi;
+    }
+
+    @Override
+    public void onClick(View view) {
+        DBHelper helper = new DBHelper(mContext);
+        Priority p = ((Priority)view.getTag());
+
+        switch (view.getId()){
+            case R.id.priority_text:
+                break;
+            case R.id.complete_button:
+                p.setCompleted(1);
+                helper.updatePriority(p);
+                mPriorities.remove(p);
+                break;
+            case R.id.cancel_button:
+                helper.deletePriority(p);
+                mPriorities.remove(p);
+                break;
+        }
+        Collections.sort(mPriorities);
+        this.notifyDataSetChanged();
     }
 }
