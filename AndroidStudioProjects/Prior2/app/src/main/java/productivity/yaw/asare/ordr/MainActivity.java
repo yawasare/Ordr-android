@@ -1,6 +1,5 @@
 package productivity.yaw.asare.ordr;
 
-import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -9,7 +8,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,14 +19,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.SeekBar;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                    PriorityFragment.OnFragmentInteractionListener,
                    ArchiveFragment.OnFragmentInteractionListener,
-                    CreateTaskFragment.CreateTaskListener{
+                    CreateTaskFragment.CreateTaskListener, View.OnClickListener {
 
     Fragment fragment = null;
 
@@ -58,6 +55,15 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        TextView todo = (TextView)drawer.findViewById(R.id.nav_priorities);
+        todo.setOnClickListener(this);
+
+        TextView archive = (TextView)drawer.findViewById(R.id.nav_archive);
+        archive.setOnClickListener(this);
+
+        TextView about = (TextView)drawer.findViewById(R.id.about);
+        about.setOnClickListener(this);
 
         GridView themeGrid = (GridView)drawer.findViewById(R.id.theme_grid);
         final int[] ids = {R.drawable.pinkbluetheme,R.drawable.bluepurpletheme,
@@ -198,5 +204,42 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+    }
+
+    @Override
+    public void onClick(View view) {
+        FragmentManager fragmentManager;
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        switch(view.getId()){
+            case R.id.nav_priorities:
+
+                try {
+                    fragment = (Fragment)PriorityFragment.class.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                 fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+                drawer.closeDrawers();
+                break;
+            case R.id.nav_archive:
+
+                try {
+                    fragment = (Fragment)ArchiveFragment.class.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+                drawer.closeDrawers();
+                break;
+
+            case R.id.about:
+
+                break;
+        }
     }
 }

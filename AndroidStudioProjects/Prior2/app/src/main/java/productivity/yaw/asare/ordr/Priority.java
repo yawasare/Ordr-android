@@ -110,8 +110,8 @@ public class Priority  implements Comparable<Priority>{
 
     public void calculatePriorityLevel(){
         float total =  0;
-        total +=  (mImportance+1)*30;
-        total +=  (mDuration+1)*35;
+        total +=  (mImportance)*30;
+        total +=  (mDuration)*35;
         Calendar now = Calendar.getInstance();
 
 
@@ -121,9 +121,8 @@ public class Priority  implements Comparable<Priority>{
 
         total += ((5-mDeadline)*30);
 
-        total += ((days)*(5-mDeadline))*10;
 
-        mPriority = ((total-70)/320)*10;
+        mPriority = ((total)/320)*10;
     }
 
     public int compareTo(Priority priority){

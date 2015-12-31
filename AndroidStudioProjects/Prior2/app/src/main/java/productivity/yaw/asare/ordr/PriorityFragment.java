@@ -99,16 +99,8 @@ public class PriorityFragment extends ListFragment {
     public void onStart(){
         super.onStart();
 
-        String toaststr = "";
 
         ArrayList<Priority> priorities =  new DBHelper(getActivity()).getCurrentPriorities();
-        Iterator<Priority> iter  = priorities.iterator();
-
-        while(iter.hasNext()){
-            Priority p = iter.next();
-            toaststr += p.toString() + " \n";
-        }
-
         PriorityAdapter adapter = new PriorityAdapter(getActivity(), getPriorities());
         setListAdapter(adapter);
     }

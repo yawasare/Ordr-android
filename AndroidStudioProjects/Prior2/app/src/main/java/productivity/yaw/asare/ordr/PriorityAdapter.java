@@ -1,13 +1,17 @@
 package productivity.yaw.asare.ordr;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -52,11 +56,24 @@ public class PriorityAdapter extends BaseAdapter implements View.OnClickListener
         if(convertView==null)
             vi = inflater.inflate(R.layout.priority_list_item, null);
 
+        LinearLayout layout = (LinearLayout)vi.findViewById(R.id.list_item);
+        TypedArray ta = mContext.obtainStyledAttributes(Constant.PRIORITY_BACKGROUNDS);
+        Drawable drawable = ta.getDrawable(mPriorities.get(position).getPriorityLevel() - 1);
+        layout.setBackground(drawable);
+
         TextView status = (TextView)vi.findViewById(R.id.status_text);
-        status.setText(Constant.PRIORITY_LEVEL_STRINGS[mPriorities.get(position).getPriorityLevel()-1]);
+        status.setText(Constant.PRIORITY_LEVEL_STRINGS[mPriorities.get(position).getPriorityLevel() - 1]);
 
         TextView title  = (TextView)vi.findViewById(R.id.priority_text);
-        title.setText(mPriorities.get(position).getTaskname() + "  " + mPriorities.get(position).getPriorityLevel());
+        title.setText(mPriorities.get(position).getTaskname());
+        title.setTextSize(Constant.PRIORITY_TEXT_SIZE[mPriorities.get(position).getPriorityLevel() - 1]);
+        title.setPadding(0, Constant.PRIORITY_PADDING[mPriorities.get(position).getPriorityLevel() - 1], 0,0);
+        title.setHeight(Constant.PRIORITY_LAYOUT_HEIGHT[mPriorities.get(position).getPriorityLevel() - 1]);
+
+
+        ViewGroup.LayoutParams p = title.getLayoutParams();
+        p.height = Constant.PRIORITY_LAYOUT_HEIGHT[mPriorities.get(position).getPriorityLevel() - 1];
+
 
         ImageView complete = (ImageView)vi.findViewById(R.id.complete_button);
         complete.setOnClickListener(this);

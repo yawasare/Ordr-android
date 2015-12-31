@@ -49,7 +49,6 @@ public class ArchiveAdapter extends BaseAdapter {
         TextView title  = (TextView)vi.findViewById(R.id.archive_item_text);
         title.setText(mPriorities.get(position).getTaskname());
 
-
         return vi;
     }
 }

@@ -14,7 +14,10 @@ public class Constant {
                                                         PRIORITY_LEVEL_THREE, PRIORITY_LEVEL_FOUR};
 
 
-    public static final int[] PRIORITY_PADDING = {};
+    public static final int[] PRIORITY_PADDING = {5, 40, 80, 140};
+    public static final int[] PRIORITY_TEXT_SIZE = {16,18,23,30};
+    public static final int[] PRIORITY_LAYOUT_HEIGHT = {100, 200, 300, 400};
 
-    public static final int[] PRIORITY_TEXT_SIZE = {};
+    public static final int[] PRIORITY_BACKGROUNDS = {R.attr.color_one, R.attr.color_two,
+                                                      R.attr.color_three, R.attr.color_four};
 }
