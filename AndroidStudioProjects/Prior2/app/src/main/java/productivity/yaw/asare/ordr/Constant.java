@@ -20,4 +20,7 @@ public class Constant {
 
     public static final int[] PRIORITY_BACKGROUNDS = {R.attr.color_one, R.attr.color_two,
                                                       R.attr.color_three, R.attr.color_four};
+
+    public static final int[] PRIORITY_BACKGROUNDS_FULL = {R.attr.color_one_full, R.attr.color_two_full,
+                                                           R.attr.color_three_full, R.attr.color_four_full};
 }

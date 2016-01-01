@@ -1,13 +1,18 @@
 package productivity.yaw.asare.ordr;
 
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +25,9 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -48,7 +56,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
+        initToolbarColor();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -73,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         themeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                switch(position){
+                switch (position) {
                     case 0:
                         getApplicationContext().setTheme(R.style.bluepink);
                         editor.putInt("theme", R.style.bluepink);
@@ -127,7 +135,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            showExitDialog();
         }
     }
 
@@ -162,14 +170,6 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_priorities) {
-            fragmentClass = PriorityFragment.class;
-
-        } else if (id == R.id.nav_archive) {
-            fragmentClass = ArchiveFragment.class;
-
-        }
-
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
@@ -201,6 +201,9 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        initToolbarColor();
+        initStatusBox();
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
@@ -238,8 +241,94 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.about:
-
+                fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+                drawer.closeDrawers();
+                showAboutDialog();
                 break;
         }
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            showExitDialog();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void showExitDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Exit?");
+        builder.setMessage("Are you sure?");
+        builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void showAboutDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("About");
+        builder.setMessage("This is an open-source application created by Yaw Asare. \n\n" +
+                "Project can be found at \n" +
+                "github.com/yawasare/Ordr-android");
+        builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public int getOverallLevel() {
+        DBHelper helper = new DBHelper(this);
+        ArrayList<Priority> ps = helper.getCurrentPriorities();
+        Iterator<Priority> iter = ps.iterator();
+        int level = 1;
+
+        while(iter.hasNext()){
+            level = Math.max(level, iter.next().getPriorityLevel());
+        }
+
+        return level;
+    };
+
+    public void initToolbarColor(){
+        Toolbar bar = (Toolbar)findViewById(R.id.toolbar);
+        TypedArray ta =  obtainStyledAttributes(Constant.PRIORITY_BACKGROUNDS_FULL);
+        Drawable drawable = ta.getDrawable(getOverallLevel() - 1);
+        bar.setBackground(drawable);
+
+        ta.recycle();
+    }
+
+    public void initStatusBox(){
+        TextView tv =(TextView)findViewById(R.id.overall_status_text);
+        TypedArray ta =  obtainStyledAttributes(Constant.PRIORITY_BACKGROUNDS);
+        Drawable drawable = ta.getDrawable(getOverallLevel() -1);
+        tv.setBackground(drawable);
+        ta.recycle();
+        tv.setText(Constant.PRIORITY_LEVEL_STRINGS[getOverallLevel()-1]);
+    }
+
+    public void initNotificationButton(){
+
     }
 }

@@ -60,6 +60,7 @@ public class PriorityAdapter extends BaseAdapter implements View.OnClickListener
         TypedArray ta = mContext.obtainStyledAttributes(Constant.PRIORITY_BACKGROUNDS);
         Drawable drawable = ta.getDrawable(mPriorities.get(position).getPriorityLevel() - 1);
         layout.setBackground(drawable);
+        ta.recycle();
 
         TextView status = (TextView)vi.findViewById(R.id.status_text);
         status.setText(Constant.PRIORITY_LEVEL_STRINGS[mPriorities.get(position).getPriorityLevel() - 1]);
