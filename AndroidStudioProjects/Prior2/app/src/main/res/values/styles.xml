@@ -16,10 +16,10 @@
         <item name="color_three">#e9f493</item>
         <item name="color_four">#f9f393</item>
 
-        <item name="color_one_full">#bff895</item>
-        <item name="color_two_full">#d4f694</item>
-        <item name="color_three_full">#e9f493</item>
-        <item name="color_four_full">#f9f393</item>
+        <item name="color_one_full">#69ee06</item>
+        <item name="color_two_full">#9aeb04</item>
+        <item name="color_three_full">#cde701</item>
+        <item name="color_four_full">#f3e501</item>
     </style>
 
     <style name="bluepink" parent="Theme.AppCompat.Light.DarkActionBar" >
@@ -37,6 +37,11 @@
         <item name="color_two">#b3b1ed</item>
         <item name="color_one">#97bdfc</item>
 
+        <item name="color_one_full">#0668fc</item>
+        <item name="color_two_full">#703cc3</item>
+        <item name="color_three_full">#bb1d9b</item>
+        <item name="color_four_full">#fb0279</item>
+
     </style>
 
     <style name="darkgrey"  parent="Theme.AppCompat.Light.DarkActionBar">
@@ -45,14 +50,19 @@
         <item name="color_background">#000000</item>
         <item name="color_title">#ffffff</item>
         <item name="color_list_foreground">#ffffff</item>
-        <item name="color_divider">#878787</item>
+        <item name="color_divider">#000000</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-        <item name="color_one">#bff895</item>
-        <item name="color_two">#d4f694</item>
-        <item name="color_three">#e9f493</item>
-        <item name="color_four">#f9f393</item>
+        <item name="color_four">#e8e8e8</item>
+        <item name="color_three">#d1d1d1</item>
+        <item name="color_two">#c2c2c2</item>
+        <item name="color_one">#a7a7a7</item>
+
+        <item name="color_four_full">#a7a7a7</item>
+        <item name="color_three_full">#8d8d8d</item>
+        <item name="color_two_full">#676767</item>
+        <item name="color_one_full">#414141</item>
     </style>
 
     <style name="lightgrey" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -65,10 +75,15 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-        <item name="color_one">#bff895</item>
-        <item name="color_two">#d4f694</item>
-        <item name="color_three">#e9f493</item>
-        <item name="color_four">#f9f393</item>
+        <item name="color_one">#e8e8e8</item>
+        <item name="color_two">#d1d1d1</item>
+        <item name="color_three">#c2c2c2</item>
+        <item name="color_four">#a7a7a7</item>
+
+        <item name="color_one_full">#a7a7a7</item>
+        <item name="color_two_full">#8d8d8d</item>
+        <item name="color_three_full">#676767</item>
+        <item name="color_four_full">#414141</item>
     </style>
 
 
@@ -82,10 +97,16 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-        <item name="color_one">#bff895</item>
-        <item name="color_two">#d4f694</item>
-        <item name="color_three">#e9f493</item>
-        <item name="color_four">#f9f393</item>
+        <item name="color_one_full">#9f5802</item>
+        <item name="color_two_full">#c5810f</item>
+        <item name="color_three_full">#e3a219</item>
+        <item name="color_four_full">#fabc21</item>
+
+        <item name="color_one">#d1af86</item>
+        <item name="color_two">#e3c38c</item>
+        <item name="color_three">#f1d291</item>
+        <item name="color_four">#fbdd94</item>
+
     </style>
 
     <style name="bluepurple" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -98,11 +119,15 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
+        <item name="color_one">#cbb6fd</item>
+        <item name="color_two">#becaf7</item>
+        <item name="color_three">#b1ddf1</item>
+        <item name="color_four">#9df9e9</item>
 
-        <item name="color_one">#bff895</item>
-        <item name="color_two">#d4f694</item>
-        <item name="color_three">#e9f493</item>
-        <item name="color_four">#f9f393</item>
+        <item name="color_one_full">#9659fd</item>
+        <item name="color_two_full">#6c96ec</item>
+        <item name="color_three_full">#4bc4df</item>
+        <item name="color_four_full">#2af4d1</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

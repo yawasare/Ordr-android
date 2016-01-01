@@ -2,6 +2,7 @@ package productivity.yaw.asare.ordr;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
@@ -100,13 +101,37 @@ public class PriorityAdapter extends BaseAdapter implements View.OnClickListener
                 p.setCompleted(1);
                 helper.updatePriority(p);
                 mPriorities.remove(p);
+                ((MainActivity)mContext).refresh();
                 break;
             case R.id.cancel_button:
                 helper.deletePriority(p);
-                mPriorities.remove(p);
+                deleteDialog(p);
                 break;
         }
         Collections.sort(mPriorities);
         this.notifyDataSetChanged();
+    }
+
+    public void deleteDialog(final Priority p){
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("Delete?");
+        builder.setMessage("Will erase Todo");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mPriorities.remove(p);
+                ((MainActivity)mContext).refresh();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

@@ -20,6 +20,6 @@
     <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_gravity="bottom|end" android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/plus" app:backgroundTint="?attr/color_low" />
+        android:src="@drawable/plus" app:backgroundTint="?attr/color_one_full" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         final SharedPreferences preferences = getSharedPreferences("settings",MODE_PRIVATE);
         final SharedPreferences.Editor editor = preferences.edit();
-        setTheme(preferences.getInt("theme", R.style.bluepink));
+        setTheme(preferences.getInt("theme", R.style.lightgrey));
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         initToolbarColor();
+        initStatusBox();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -74,17 +75,17 @@ public class MainActivity extends AppCompatActivity
         about.setOnClickListener(this);
 
         GridView themeGrid = (GridView)drawer.findViewById(R.id.theme_grid);
-        final int[] ids = {R.drawable.pinkbluetheme,R.drawable.bluepurpletheme,
+        final int[] ids = {R.drawable.whitegreytheme,R.drawable.bluepurpletheme,
                            R.drawable.greyblacktheme,R.drawable.orangebrowntheme,
-                           R.drawable.whitegreytheme, R.drawable.yellowgreentheme};
+                           R.drawable.pinkbluetheme, R.drawable.yellowgreentheme};
         themeGrid.setAdapter(new ThemeGridAdapter(this,ids));
         themeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        getApplicationContext().setTheme(R.style.bluepink);
-                        editor.putInt("theme", R.style.bluepink);
+                        getApplicationContext().setTheme(R.style.lightgrey);
+                        editor.putInt("theme", R.style.lightgrey);
                         break;
                     case 1:
                         getApplicationContext().setTheme(R.style.bluepurple);
@@ -99,8 +100,8 @@ public class MainActivity extends AppCompatActivity
                         editor.putInt("theme", R.style.orangebrown);
                         break;
                     case 4:
-                        getApplicationContext().setTheme(R.style.lightgrey);
-                        editor.putInt("theme", R.style.lightgrey);
+                        getApplicationContext().setTheme(R.style.bluepink);
+                        editor.putInt("theme", R.style.bluepink);
                         break;
                     case 5:
                         getApplicationContext().setTheme(R.style.greenyellow);
@@ -154,10 +155,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -195,18 +192,7 @@ public class MainActivity extends AppCompatActivity
         DBHelper helper = new DBHelper(getBaseContext());
         helper.addPriority(p);
 
-
-        try {
-            fragment = (Fragment)PriorityFragment.class.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        initToolbarColor();
-        initStatusBox();
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+        refresh();
     }
 
     @Override
@@ -325,10 +311,25 @@ public class MainActivity extends AppCompatActivity
         Drawable drawable = ta.getDrawable(getOverallLevel() -1);
         tv.setBackground(drawable);
         ta.recycle();
-        tv.setText(Constant.PRIORITY_LEVEL_STRINGS[getOverallLevel()-1]);
+        tv.setText(Constant.PRIORITY_LEVEL_STRINGS[getOverallLevel() - 1]);
     }
 
     public void initNotificationButton(){
 
+    }
+
+    public void refresh(){
+        try {
+            fragment = (Fragment)PriorityFragment.class.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        initToolbarColor();
+        initStatusBox();
+        initNotificationButton();
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
     }
 }
