@@ -1,9 +1,14 @@
 package productivity.yaw.asare.ordr;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,11 +28,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -46,7 +56,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +65,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        initToolbarColor();
-        initStatusBox();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -118,14 +126,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        try {
-            fragment = (Fragment)PriorityFragment.class.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+        refresh();
 
     }
 
@@ -283,6 +284,12 @@ public class MainActivity extends AppCompatActivity
         dialog.show();
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        initNotificationButton();
+    }
+
     public int getOverallLevel() {
         DBHelper helper = new DBHelper(this);
         ArrayList<Priority> ps = helper.getCurrentPriorities();
@@ -315,7 +322,56 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void initNotificationButton(){
+        final SharedPreferences preferences = getSharedPreferences("settings",MODE_PRIVATE);
+        boolean notificationsEnabled = preferences.getBoolean("notifications", false);
+        Switch s = (Switch)findViewById(R.id.notification_switch);
+        s.setChecked(notificationsEnabled);
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor edit = preferences.edit();
+                edit.putBoolean("notifications", isChecked);
+                edit.apply();
 
+                if(!isChecked){
+                    cancelNotifications();
+                }
+                else{
+                    updateNotifications();
+                }
+            }
+        });
+    }
+
+    public void updateNotifications(){
+
+        NotificationManager NM;
+        NM=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        NM.cancelAll();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+
+        Intent i = new Intent(this, MainActivity.class);
+        i.setAction("com.yaw.notify.push");
+
+        PendingIntent pintent = PendingIntent.getService(this,Constant.ALARM_ID,
+                i,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pintent);
+
+    }
+
+    public void cancelNotifications(){
+        AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+        Intent i = new Intent(this, MainActivity.class);
+        i.setAction("com.yaw.notify.push");
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                Constant.ALARM_ID, i, PendingIntent.FLAG_UPDATE_CURRENT);
+        pendingIntent.cancel();
+        manager.cancel(pendingIntent);
     }
 
     public void refresh(){
