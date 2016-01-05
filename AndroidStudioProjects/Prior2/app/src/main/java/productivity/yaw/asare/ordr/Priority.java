@@ -110,17 +110,32 @@ public class Priority  implements Comparable<Priority>{
 
     public void calculatePriorityLevel(){
         float total =  0;
-        total +=  (mImportance)*30;
+        total +=  (mImportance)*40;
         total +=  (mDuration)*35;
         Calendar now = Calendar.getInstance();
 
 
-        long difference =  now.getTime().getTime() - mDeadlineDate.getTime().getTime() ;
+        long difference =    now.getTime().getTime() - mCreated.getTime().getTime() ;
         int days = (int) (difference / (1000*60*60*24));
         int hours = (int) ((difference - (1000*60*60*24*days)) / (1000*60*60));
 
-        total += ((5-mDeadline)*30);
-
+        total += ((5-mDeadline)*20);
+        switch(mDeadline){
+            case 1:
+                total += days*50;
+                break;
+            case 2:
+                total += days*10;
+                break;
+            case 3:
+                total += days*4;
+                break;
+            case 4:
+                total += days*2;
+                break;
+            default:
+                break;
+        }
 
         mPriority = ((total)/320)*10;
     }
@@ -140,7 +155,7 @@ public class Priority  implements Comparable<Priority>{
     public int getPriorityLevel(){
         calculatePriorityLevel();
 
-        return Math.min(4,Math.round(mPriority-4));
+        return Math.max(Math.min(4,Math.round(mPriority-4)), 1);
     }
 
 
