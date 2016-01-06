@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="color_low" format="color" />
+    <attr name="color_high" format="color"/>
+    <attr name="color_background" format="color"/>
+    <attr name="color_title" format="color"/>
+    <attr name="color_list_foreground" format="color"/>
+    <attr name="color_divider" format="color"/>
+    <attr name="color_one" format="color" />
+    <attr name="color_two" format="color" />
+    <attr name="color_three" format="color" />
+    <attr name="color_four" format="color" />
+    <attr name="color_one_full" format="color" />
+    <attr name="color_two_full" format="color" />
+    <attr name="color_three_full" format="color" />
+    <attr name="color_four_full" format="color" />
+</resources>

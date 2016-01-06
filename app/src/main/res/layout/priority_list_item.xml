@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/color_list_foreground"
+    android:padding="5dp"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/list_item"
+        android:padding="5dp"
+        >
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="On Time"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            />
+
+        <TextView
+            android:id="@+id/priority_text"
+            android:layout_width="fill_parent"
+            android:layout_height="100px"
+            android:text="Hello"
+            android:textAlignment="center"
+            android:padding="30px"/>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/cancel_button"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/close"
+                android:scaleType="fitXY"
+                android:padding="13dp"
+
+                />
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/complete_button"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/checked"
+                android:scaleType="fitXY"
+                android:padding="12dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
