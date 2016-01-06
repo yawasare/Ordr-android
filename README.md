@@ -6,6 +6,14 @@
 ordr is a to-do list android app. Users create a to-do and enter a deadline, a duration, and a level of importance. The application sorts and ranks todos based on this information. Task are listed in the order in which it would be best to complete them. 
 
 ## Latest Version
+Google play: https://play.google.com/store/apps/details?id=com.productivity.yaw.asare.ordr&hl=en
+
+## Latest Features
+
+* internal SQLite database
+* push notifications
+* custom list views and custom adapters
+* navigation drawers with fragments 
 
 ## Contribute!
 
@@ -25,4 +33,5 @@ You should have received a copy of the GNU General Public License along with thi
 
 ## Contacts
 
-This program was written by Yaw Asare. Email: yawasare5@gmail.com
+This program was written by Yaw Asare. 
+Email: yawasare5@gmail.com
